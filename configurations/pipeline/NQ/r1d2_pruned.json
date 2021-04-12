@@ -1,0 +1,62 @@
+{
+  "index": {
+    "passage_embeddings": {
+      "directory": ".index",
+      "name": "DPR_nqsingle_offic_electrapruner_nqopen_1700000_HALF.h5.zip",
+      "url": "r2d2.fit.vutbr.cz/index/nq-open/DPR_nqsingle_offic_electrapruner_nqopen_1700000_HALF.h5.zip"
+    },
+    "database": {
+      "directory": ".index",
+      "name": "wiki2018_dpr_blocks_nq_open_pruned_P1700000.db.zip",
+      "url": "r2d2.fit.vutbr.cz/data/wiki2018_dpr_blocks_nq_open_pruned_P1700000.db.zip"
+    }
+  },
+  "retriever": {
+    "directory": ".checkpoints",
+    "name": "dpr_official_questionencoder_nq_fp16.pt.zip",
+    "url": "r2d2.fit.vutbr.cz/checkpoints/nq-open/dpr_official_questionencoder_nq_fp16.pt.zip",
+    "top_k": 128
+  },
+  "reranker": {
+    "active": "false"
+  },
+  "reader": {
+    "active": "extractive",
+    "extractive": {
+      "directory": ".checkpoints",
+      "name": "EXT_READER_ELECTRA_LARGE_B128_049_J24_HALF.pt.zip",
+      "url": "r2d2.fit.vutbr.cz/checkpoints/nq-open/EXT_READER_ELECTRA_LARGE_B128_049_J24_HALF.pt.zip",
+      "config": {
+        "batch_size": 128,
+        "top_k_answers": 50,
+        "max_tokens_for_answer": 5
+      }
+    },
+    "generative": {
+      "directory": ".checkpoints",
+      "name": "generative_reader_EM0.4830_S7000_Mt5-large_2021-01-15_05_fp16.pt.zip",
+      "url": "r2d2.fit.vutbr.cz/checkpoints/nq-open/generative_reader_EM0.4830_S7000_Mt5-large_2021-01-15_05_fp16.pt.zip"
+    }
+  },
+  "fusion": {
+    "generative_reranking_only": {
+      "active": "false"
+    },
+    "aggregate_span_scores": {
+      "active": "true",
+      "parameters": {"weight": [[0.11694230884313583, -0.015524807386100292, 0.6671864986419678]], "bias": [0.3110809326171875]},
+      "components": [
+        "retriever",
+        "extractive_reader",
+        "generative_reader"
+      ]
+    },
+    "decide_ext_abs": {
+      "active": "true",
+      "parameters": {"weight": [[-0.08276216685771942, 0.6955999135971069]], "bias": [0.0247349850833416]}
+    }
+  },
+  "device": "gpu",
+  "transformers_cache": ".Transformers_cache",
+  "pipeline_cache_dir": ".pipeline_cache_r1d2_pruned"
+}

@@ -1,0 +1,51 @@
+{
+  "index": {
+    "passage_embeddings": {
+      "directory": ".index",
+      "name": "DPR_multiset_official.h5.zip",
+      "url": "r2d2.fit.vutbr.cz/index/trivia/DPR_multiset_official.h5.zip"
+    },
+    "database": {
+      "directory": ".index",
+      "name": "wiki2018_dpr_blocks.db.zip",
+      "url": "r2d2.fit.vutbr.cz/data/wiki2018_dpr_blocks.db.zip"
+    }
+  },
+  "retriever": {
+    "directory": ".checkpoints",
+    "name": "dpr_official_questionencoder_multiset.pt.zip",
+    "url": "r2d2.fit.vutbr.cz/checkpoints/trivia/dpr_official_questionencoder_multiset.pt.zip",
+    "top_k": 25
+  },
+  "reranker": {
+    "active": "false"
+  },
+  "reader": {
+    "active": "generative",
+    "extractive": "none",
+    "generative": {
+      "directory": ".checkpoints",
+      "name": "generative_reader_EM0.6521_S2460_Mt5-large_2021-01-27_01:39.pt.zip",
+      "url": "r2d2.fit.vutbr.cz/checkpoints/trivia/generative_reader_EM0.6521_S2460_Mt5-large_2021-01-27_01:39.pt.zip"
+    }
+  },
+  "fusion": {
+    "aggregate_span_scores": {
+      "active": "false",
+      "parameters": "none",
+      "components": [
+        "retriever",
+        "reranker",
+        "extractive_reader",
+        "generative_reader"
+      ]
+    },
+    "decide_ext_abs": {
+      "active": "false",
+      "parameters": "none"
+    }
+  },
+  "device": "gpu",
+  "transformers_cache": ".Transformers_cache",
+  "pipeline_cache_dir": ".pipeline_cache_r1d1_gen_full"
+}

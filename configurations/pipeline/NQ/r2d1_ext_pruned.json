@@ -1,0 +1,61 @@
+{
+  "index": {
+    "passage_embeddings": {
+      "directory": ".index",
+      "name": "DPR_nqsingle_offic_electrapruner_nqopen_1700000_HALF.h5.zip",
+      "url": "r2d2.fit.vutbr.cz/index/nq-open/DPR_nqsingle_offic_electrapruner_nqopen_1700000_HALF.h5.zip"
+    },
+    "database": {
+      "directory": ".index",
+      "name": "wiki2018_dpr_blocks_nq_open_pruned_P1700000.db.zip",
+      "url": "r2d2.fit.vutbr.cz/data/wiki2018_dpr_blocks_nq_open_pruned_P1700000.db.zip"
+    }
+  },
+  "retriever": {
+    "directory": ".checkpoints",
+    "name": "dpr_official_questionencoder_nq_fp16.pt.zip",
+    "url": "r2d2.fit.vutbr.cz/checkpoints/nq-open/dpr_official_questionencoder_nq_fp16.pt.zip",
+    "top_k": 200
+  },
+  "reranker": {
+    "active": "true",
+    "directory": ".checkpoints",
+    "name": "reranker_roberta-base_2021-02-25-17-27_athena19_HIT@25_0.8299645997487725_fp16.ckpt.zip",
+    "url": "r2d2.fit.vutbr.cz/checkpoints/nq-open/reranker_roberta-base_2021-02-25-17-27_athena19_HIT@25_0.8299645997487725_fp16.ckpt.zip",
+    "config": {
+      "batch_size": 100
+    }
+  },
+  "reader": {
+    "active": "extractive",
+    "extractive": {
+      "directory": ".checkpoints",
+      "name": "EXT_READER_ELECTRA_LARGE_B128_049_J24_HALF.pt.zip",
+      "url": "r2d2.fit.vutbr.cz/checkpoints/nq-open/EXT_READER_ELECTRA_LARGE_B128_049_J24_HALF.pt.zip",
+      "config": {
+        "batch_size": 128,
+        "top_k_answers": 50,
+        "max_tokens_for_answer": 5
+      }
+    }
+  },
+  "fusion": {
+    "aggregate_span_scores": {
+      "active": "false",
+      "parameters": "none",
+      "components": [
+        "retriever",
+        "reranker",
+        "extractive_reader",
+        "generative_reader"
+      ]
+    },
+    "decide_ext_abs": {
+      "active": "false",
+      "parameters": "none"
+    }
+  },
+  "device": "gpu",
+  "transformers_cache": ".Transformers_cache",
+  "pipeline_cache_dir": ".pipeline_cache"
+}

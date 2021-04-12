@@ -1,0 +1,51 @@
+{
+  "index": {
+    "passage_embeddings": {
+      "directory": ".index",
+      "name": "DPR_nqsingle_official.h5.zip",
+      "url": "r2d2.fit.vutbr.cz/index/nq-open/DPR_nqsingle_official.h5.zip"
+    },
+    "database": {
+      "directory": ".index",
+      "name": "wiki2018_dpr_blocks.db.zip",
+      "url": "r2d2.fit.vutbr.cz/data/wiki2018_dpr_blocks.db.zip"
+    }
+  },
+  "retriever": {
+    "directory": ".checkpoints",
+    "name": "dpr_official_questionencoder_nq.pt.zip",
+    "url": "r2d2.fit.vutbr.cz/checkpoints/nq-open/dpr_official_questionencoder_nq.pt.zip",
+    "top_k": 25
+  },
+  "reranker": {
+    "active": "false"
+  },
+  "reader": {
+    "active": "generative",
+    "extractive": "none",
+    "generative": {
+      "directory": ".checkpoints",
+      "name": "generative_reader_EM0.4830_S7000_Mt5-large_2021-01-15_05.pt.zip",
+      "url": "r2d2.fit.vutbr.cz/checkpoints/nq-open/generative_reader_EM0.4830_S7000_Mt5-large_2021-01-15_05.pt.zip"
+    }
+  },
+  "fusion": {
+    "aggregate_span_scores": {
+      "active": "false",
+      "parameters": "none",
+      "components": [
+        "retriever",
+        "reranker",
+        "extractive_reader",
+        "generative_reader"
+      ]
+    },
+    "decide_ext_abs": {
+      "active": "false",
+      "parameters": "none"
+    }
+  },
+  "device": "gpu",
+  "transformers_cache": ".Transformers_cache",
+  "pipeline_cache_dir": ".pipeline_cache"
+}

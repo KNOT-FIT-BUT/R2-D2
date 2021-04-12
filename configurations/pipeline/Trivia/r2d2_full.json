@@ -1,0 +1,72 @@
+{
+  "index": {
+    "passage_embeddings": {
+      "directory": ".index",
+      "name": "DPR_multiset_official.h5.zip",
+      "url": "r2d2.fit.vutbr.cz/index/trivia/DPR_multiset_official.h5.zip"
+    },
+    "database": {
+      "directory": ".index",
+      "name": "wiki2018_dpr_blocks.db.zip",
+      "url": "r2d2.fit.vutbr.cz/data/wiki2018_dpr_blocks.db.zip"
+    }
+  },
+  "retriever": {
+    "directory": ".checkpoints",
+    "name": "dpr_official_questionencoder_multiset.pt.zip",
+    "url": "r2d2.fit.vutbr.cz/checkpoints/trivia/dpr_official_questionencoder_multiset.pt.zip",
+    "top_k": 200
+  },
+  "reranker": {
+    "active": "true",
+    "directory": ".checkpoints",
+    "name": "reranker_roberta-base_2021-03-03-16-32_pcknot3_HIT@25_0.8307117800158424.ckpt.zip",
+    "url": "r2d2.fit.vutbr.cz/checkpoints/trivia/reranker_roberta-base_2021-03-03-16-32_pcknot3_HIT@25_0.8307117800158424.ckpt.zip",
+    "config": {
+      "batch_size": 100
+    }
+  },
+  "reader": {
+    "active": "extractive",
+    "extractive": {
+      "directory": ".checkpoints",
+      "name": "EXT_READER_ELECTRA_LARGE_TRIVIA_B128_067_J25.pt.zip",
+      "url": "r2d2.fit.vutbr.cz/checkpoints/trivia/EXT_READER_ELECTRA_LARGE_TRIVIA_B128_067_J25.pt.zip",
+      "config": {
+        "batch_size": 24,
+        "top_k_answers": 50,
+        "max_tokens_for_answer": 50
+      }
+    },
+    "generative": {
+      "directory": ".checkpoints",
+      "name": "generative_reader_EM0.6521_S2460_Mt5-large_2021-01-27_01:39.pt.zip",
+      "url": "r2d2.fit.vutbr.cz/checkpoints/trivia/generative_reader_EM0.6521_S2460_Mt5-large_2021-01-27_01:39.pt.zip"
+    }
+  },
+  "fusion": {
+    "aggregate_span_scores": {
+      "active": "true",
+      "parameters": {
+        "weight": [[0.10875711590051651, 0.18138247728347778, 0.17054156959056854, 1.7542457580566406]], 
+        "bias": [-0.4965992271900177]
+      },
+      "components": [
+        "retriever",
+        "reranker",
+        "extractive_reader",
+        "generative_reader"
+      ]
+    },
+    "decide_ext_abs": {
+      "active": "true",
+      "parameters": {
+        "weight": [[-0.11825751513242722, 0.8942140340805054]], 
+        "bias": [-0.27884742617607117]
+      }
+    }
+  },
+  "device": "gpu",
+  "transformers_cache": ".Transformers_cache",
+  "pipeline_cache_dir": ".pipeline_cache_r2d2_full"
+}

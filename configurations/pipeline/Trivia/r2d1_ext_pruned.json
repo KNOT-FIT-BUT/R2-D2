@@ -1,0 +1,54 @@
+{
+  "index": {
+    "passage_embeddings": {
+      "directory": ".index",
+      "name": "DPR_multiset_official_electrapruner_triviaopen_1700000.h5.zip",
+      "url": "r2d2.fit.vutbr.cz/index/trivia/DPR_multiset_official_electrapruner_triviaopen_1700000.h5.zip"
+    },
+    "database": {
+      "directory": ".index",
+      "name": "wiki2018_dpr_blocks_triviaopen_pruned_P1700000.db.zip",
+      "url": "r2d2.fit.vutbr.cz/data/wiki2018_dpr_blocks_triviaopen_pruned_P1700000.db.zip"
+    }
+  },
+  "retriever": {
+    "directory": ".checkpoints",
+    "name": "dpr_official_questionencoder_multiset_fp16.pt.zip",
+    "url": "r2d2.fit.vutbr.cz/checkpoints/trivia/dpr_official_questionencoder_multiset_fp16.pt.zip",
+    "top_k": 200
+  },
+  "reranker": {
+    "active": "true",
+    "directory": ".checkpoints",
+    "name": "reranker_roberta-base_2021-03-03-16-32_pcknot3_HIT@25_0.8307117800158424_fp16.ckpt.zip",
+    "url": "r2d2.fit.vutbr.cz/checkpoints/trivia/reranker_roberta-base_2021-03-03-16-32_pcknot3_HIT@25_0.8307117800158424_fp16.ckpt.zip",
+    "config": {
+      "batch_size": 100
+    }
+  },
+  "reader": {
+    "active": "extractive",
+    "extractive": {
+      "directory": ".checkpoints",
+      "name": "EXT_READER_ELECTRA_LARGE_TRIVIA_B128_067_J25_HALF.pt.zip",
+      "url": "r2d2.fit.vutbr.cz/checkpoints/trivia/EXT_READER_ELECTRA_LARGE_TRIVIA_B128_067_J25_HALF.pt.zip",
+      "config": {
+        "batch_size": 24,
+        "top_k_answers": 50,
+        "max_tokens_for_answer": 50
+      }
+    },
+    "generative": "none"
+  },
+  "fusion": {
+    "aggregate_span_scores": {
+      "active": "false"
+    },
+    "decide_ext_abs": {
+      "active": "false"
+    }
+  },
+  "device": "gpu",
+  "transformers_cache": ".Transformers_cache",
+  "pipeline_cache_dir": ".pipeline_cache_r2d1_ext_pruned"
+}

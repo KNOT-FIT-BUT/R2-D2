@@ -1,0 +1,48 @@
+---
+disable_existing_loggers: false
+version: 1
+formatters:
+  short:
+    format: "%(asctime)s %(levelname)s %(name)s: %(message)s"
+filters:
+  debugonly:
+    (): LevelOnly
+    level: DEBUG
+  infoonly:
+    (): LevelOnly
+    level: INFO
+  erroronly:
+    (): LevelOnly
+    level: ERROR
+handlers:
+  console:
+    level: INFO
+    formatter: short
+    class: logging.StreamHandler
+  debug_fhandler:
+    level: DEBUG
+    formatter: short
+    class: logging.FileHandler
+    filters: [debugonly]
+    filename: debug.log
+  info_fhandler:
+    level: INFO
+    formatter: short
+    class: logging.FileHandler
+    filters: [infoonly]
+    filename: info.log
+  error_fhandler:
+    level: ERROR
+    formatter: short
+    class: logging.FileHandler
+    filters: [erroronly]
+    filename: error.log
+loggers:
+  '':
+    handlers:
+      - console
+      - debug_fhandler
+      - info_fhandler
+      - error_fhandler
+    propagate: true
+    level: DEBUG
