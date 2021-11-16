@@ -1,15 +1,37 @@
-# Pruning the Index Contents for Memory Efficient Open-Domain QA
+# Introduction
 
-This repository contains the official implementation accompanying our [preprint](https://arxiv.org/abs/2102.10697). The
-sources present in this repository can be used to __run model inference in the pipeline__. Therefore the model uses already pretrained checkpoints.
+This repository contains the official implementation accompanying our
+- **EMNLP'21 Findings paper** [R2-D2: A Modular Baseline for Open-Domain Question Answering](https://aclanthology.org/2021.findings-emnlp.73/)
+- **preprint** [Pruning the Index Contents for Memory Efficient Open-Domain QA](https://arxiv.org/abs/2102.10697).  
 
-Please note our paper is accompanied with two repositories. If you are interested in __training new models__ instead, check the [scalingQA](https://github.com/KNOT-FIT-BUT/scalingQA) repository.
 
-If you use this code, please cite our preprint:
+The sources present in this repository can be used to __run model inference in the pipeline__. Therefore the model uses already pretrained checkpoints.
+Please note our work is accompanied with two repositories. If you are interested in __training new models__ instead, check the [scalingQA](https://github.com/KNOT-FIT-BUT/scalingQA) repository.
+
+If you use **R2-D2**, please cite our paper:
+```
+@inproceedings{fajcik-etal-2021-r2-d2,
+    title = "{R2-D2}: {A} {M}odular {B}aseline for {O}pen-{D}omain {Q}uestion {A}nswering",
+    author = "Fajcik, Martin  and
+      Docekal, Martin  and
+      Ondrej, Karel  and
+      Smrz, Pavel",
+    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2021",
+    month = nov,
+    year = "2021",
+    address = "Punta Cana, Dominican Republic",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.findings-emnlp.73",
+    pages = "854--870",
+    abstract = "This work presents a novel four-stage open-domain QA pipeline R2-D2 (Rank twice, reaD twice). The pipeline is composed of a retriever, passage reranker, extractive reader, generative reader and a mechanism that aggregates the final prediction from all system{'}s components. We demonstrate its strength across three open-domain QA datasets: NaturalQuestions, TriviaQA and EfficientQA, surpassing state-of-the-art on the first two. Our analysis demonstrates that: (i) combining extractive and generative reader yields absolute improvements up to 5 exact match and it is at least twice as effective as the posterior averaging ensemble of the same models with different parameters, (ii) the extractive reader with fewer parameters can match the performance of the generative reader on extractive QA datasets.",
+}
+```
+
+If you use our **corpus pruning approach** from our pre-print, please cite our preprint:
 
 ```
 @article{fajcik2021pruning,
-  title={Pruning the Index Contents for Memory Efficient Open-Domain QA},
+  title={{P}runing the {I}ndex {C}ontents for {M}emory {E}fficient {O}pen-{D}omain {QA}},
   author={Fajcik, Martin and Docekal, Martin and Ondrej, Karel and Smrz, Pavel},
   journal={arXiv preprint arXiv:2102.10697},
   year={2021}
